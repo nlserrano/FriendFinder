@@ -1,4 +1,4 @@
-// Pull in required dependencies
+// Require dependencies
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
@@ -12,7 +12,7 @@ app.use(express.static(__dirname + "/app/css"));
 // Expose the public directory to access CSS files
 app.use(express.static(path.join(__dirname, './app/public')));
 
-// Add middleware for parsing incoming request bodies
+// Using body-parser module
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
