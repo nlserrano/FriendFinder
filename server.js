@@ -22,19 +22,3 @@ require("./app/routing/htmlRoutes.js")(app);
 app.listen(PORT, function() {
     console.log("FriendFinder app listening on PORT: " + PORT);
 });
-
-
-
-// // Require dependencies
-// var express = require('express');
-// var bodyParser = require('body-parser');
-// var path = require('path');
-
-// // Configure the Express application
-// var app = express();
-// var PORT = process.env.PORT || 3030;
-
-// app.use(express.static(__dirname + "/app/css"));
-
-// // Expose the public directory to access CSS files
-// app.use(express.static(path.join(__dirname, './app/public')));

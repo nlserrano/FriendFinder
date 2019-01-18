@@ -2,14 +2,13 @@ var path = require("path");
 
 // Export HTML routes
 module.exports = function(app) {
-	// console.log("___ENTER htmlRoutes.js___");
 
 	// Home page
 	app.get("/", function(req, res) {
 		res.sendFile(path.join(__dirname, "../public/home.html"));
     });
     
-    // alternative route for Home page
+    // An alternative route for Home page
     // app.use( function(req, res) {
     //     res.sendFile(path.join(__dirname,"../public/home.html"));
     // });

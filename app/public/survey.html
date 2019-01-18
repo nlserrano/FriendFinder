@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Friend Finder</title>
-    <!-- minified CSS bootstrap-->
+    <!-- minified CSS bootstrap link-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- font awesome link -->
@@ -13,7 +13,7 @@
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
-    <!-- bootstrap? -->
+    <!-- bootstrap -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
@@ -28,16 +28,18 @@
         <hr>
         <h3>About Me</h3>
         <form>
+            <!-- Name and Image section -->
             <div class="form-group col-md-8">
                 <label for="name">Name (required)</label>
-                <input type="text" class="form-control" id="name" placeholder="Johnny">
+                <input type="text" class="form-control" id="name" placeholder="(Ex: Johnny)">
             </div>
             <div class="form-group col-md-8">
                 <label for="image">Link to Photo Image (required)</label>
-                <input type="text" class="form-control" id="photo" placeholder="Link to Profile Photo (Required)">
+                <input type="text" class="form-control" id="photo" placeholder="(Ex: Img, Jpeg, Png, etc...)">
             </div>
     
             <hr>
+            <!-- Survey questions -->
             <h3>Questions</h3>
             <div class="form-group col-md-8">
                 <label for="question1">Your mind is always buzzing with unexplored ideas and plans.</label>
@@ -161,18 +163,13 @@
             <br>
         </form>
 
-    
-
-        <!-- old Survey Submit Button -->
-        <!-- <div class="text-left input-field col s12">
-            <button type="submit" class="btn btn-primary btn-md" name="action" id="submitButton"><span class="fa fa-fire"></span> Submit!</button>
-        </div> -->
-
+        <!-- Submit button -->
         <div class="col-md-6">
             <button id="submitBtn" type="submit" class="btn btn-primary btn-md text-left">Submit!</button>
         </div>
         <br>
 
+        <!-- Footer -->
         <footer class="footer">
             <div class="container">
                 <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/nlserrano/FriendFinder">GitHub Repo</a>
@@ -242,161 +239,8 @@
         });
     </script>
 
-    <!-- from bill
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <h4>Friend Match</h4>
-            <div class="divider"></div>
-            <h5 id="matchName"></h5>
-            <img id="matchImage" class="materialboxed" width="650" height="650" src="">
-            <a href="/survey" class="modal-action modal-close btn-flat">Try Again!</a>
-        </div>
-    </div>
-
-    <script>
-        const newUserInput = () => {
-            event.preventDefault()
-            const modal = document.getElementById('myModal');
-            fetch('/friends', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json; Charset=utf-8'
-                },
-                body: JSON.stringify({
-                    name: document.querySelector('#name').value,
-                    photo: document.querySelector('#photolink').value,
-                    scores: [
-                        document.querySelector("#question1").value,
-                        document.querySelector("#question2").value,
-                        document.querySelector("#question3").value,
-                        document.querySelector("#question4").value,
-                        document.querySelector("#question5").value,
-                        document.querySelector("#question6").value,
-                        document.querySelector("#question7").value,
-                        document.querySelector("#question8").value,
-                        document.querySelector("#question9").value,
-                        document.querySelector("#question10").value
-                    ]
-                })
-            })
-            .then(r => r.json())
-            .then(r => {
-                document.querySelector("#matchName").append(r.matchName)
-                document.getElementById('matchImage').src = r.matchImage
-                modal.style.display = "block";
-            })
-        }
-    </script>
-
-    end -->
-
-
-    <!-- old modal and javascript -->
-    <!-- Modal Dialog Displaying Closest Friend Match -->
-    <!-- <div id="modal1" class="modal">
-        <div class="modal-content">
-            <h4>Closest Friend Match</h4>
-            <div class="divider"></div>
-            <h5 id="userMatchName"></h5>
-            <img id="userMatchPhoto" class="materialboxed" width="650" src="">
-        </div>
-        <div class="modal-footer">
-            <a href="/survey" class="modal-action modal-close waves-effect waves-green btn-flat">Fill Again!</a>
-        </div>
-    </div>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('select').material_select();
-            $('.modal').modal({
-                dismissible: false, // Modal can be dismissed by clicking outside of the modal
-                opacity: .5, // Opacity of modal background
-                inDuration: 300, // Transition in duration
-                outDuration: 200, // Transition out duration
-                startingTop: '4%', // Starting top style attribute
-                endingTop: '10%' // Ending top style attribute
-            });
-        });
-        // Activate submit button
-        $('#submitButton').on('click', function(event) {
-            event.preventDefault();
-            console.log("working button");
-            // Gather user inputs
-            var userInput = {
-                name: $('#name').val().trim(),
-                photo: $('#photolink').val().trim(),
-                scores:[
-                    $('#question1').val().trim(),
-                    $('#question2').val().trim(),
-                    $('#question3').val().trim(),
-                    $('#question4').val().trim(),
-                    $('#question5').val().trim(),
-                    $('#question6').val().trim(),
-                    $('#question7').val().trim(),
-                    $('#question8').val().trim(),
-                    $('#question9').val().trim(),
-                    $('#question10').val().trim()
-                ]
-            };
-            // console.log('userInput = ' + JSON.stringify(userInput));
-            // Add user inputs to friends list
-            $.post('/api/friends', userInput)
-            .done(function(data) {
-                // console.log('response = ' + JSON.stringify(data));
-                // Set the name and image values of friend match
-                $('#userMatchName').html(data.matchName);
-                $("#userMatchPhoto").attr("src", data.matchImage);
-                // Pop open the modal dialog
-                $('#modal1').modal('open');
-            });
-        });
-    </script> -->
-        
-
 </body>
 </html>
-
-<!-- <div class="container">
-    
-    <form>
-        <div class="form-group">
-            <label for="exampleFormControlInput1">Name (required)</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="John Doe">
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlSelect1">Example select</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlSelect2">Example multiple select</label>
-            <select multiple class="form-control" id="exampleFormControlSelect2">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Example textarea</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-    </form>
-    <hr>
-</div> -->
-
-<!-- old button -->
-<!-- <div>
-    <button class="btn waves-effect waves-light" type="submit" name="action" id="submitButton">Submit Responses
-        <i class="material-icons right">send</i>
-    </button>
-</div> -->
 
         
     
